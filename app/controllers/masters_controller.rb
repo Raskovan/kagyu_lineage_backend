@@ -27,7 +27,7 @@ class MastersController < ApplicationController
   end
 
   def destroy
-    @master = Recipe.find(params[:id])
+    @master = Master.find(params[:id])
     @master.destroy
     render json: {alert: "Has been deleted."}
   end
