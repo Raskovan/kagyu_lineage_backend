@@ -749,3 +749,12 @@ Migrating to ChangeOrderColumnName (20180318033527)
   [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
   [1m[35m (0.5ms)[0m  [1m[34mSELECT pg_advisory_unlock(5355315013398446460)[0m
   [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/" for 127.0.0.1 at 2018-03-17 23:42:11 -0400
+  [1m[35m (1.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by MastersController#index as HTML
+  [1m[36mMaster Load (1.2ms)[0m  [1m[34mSELECT "masters".* FROM "masters"[0m
+No serializer found for resource: #<Master id: 2, order_id: 3, name: "Naropa", years_lived: "1016-1100", description: "Born as a Bengali prince named Samantabhadra, Naro...", img_url: nil>
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Master::ActiveRecord_Relation (0.86ms)
+Completed 200 OK in 57ms (Views: 41.9ms | ActiveRecord: 10.6ms)
+
+
