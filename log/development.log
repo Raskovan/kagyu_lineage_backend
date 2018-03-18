@@ -1,0 +1,739 @@
+  [1m[35m (79.7ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (7.0ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT pg_try_advisory_lock(5355315013398446460)[0m
+  [1m[35m (1.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to Masters (20180318013450)
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT pg_advisory_unlock(5355315013398446460)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT pg_try_advisory_lock(5355315013398446460)[0m
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to Masters (20180318013450)
+  [1m[35m (0.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (44.8ms)[0m  [1m[35mCREATE TABLE "masters" ("id" bigserial primary key, "order" integer, "name" character varying, "years_lived" character varying, "description" text, "img_url" character varying)[0m
+  [1m[35mSQL (23.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20180318013450"]]
+  [1m[35m (1.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.7ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (20.8ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2018-03-18 01:45:09.779603"], ["updated_at", "2018-03-18 01:45:09.779603"]]
+  [1m[35m (1.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_advisory_unlock(5355315013398446460)[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mMaster Load (11.9ms)[0m  [1m[34mSELECT  "masters".* FROM "masters" LIMIT $1[0m  [["LIMIT", 11]]
+Started GET "/" for 127.0.0.1 at 2018-03-17 21:58:45 -0400
+  [1m[35m (1.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActiveRecord::PendingMigrationError (
+
+Migrations are pending. To resolve this issue, run:
+
+        bin/rails db:migrate RAILS_ENV=development
+
+):
+  
+activerecord (5.1.5) lib/active_record/migration.rb:576:in `check_pending!'
+activerecord (5.1.5) lib/active_record/migration.rb:553:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/callbacks.rb:26:in `block in call'
+activesupport (5.1.5) lib/active_support/callbacks.rb:97:in `run_callbacks'
+actionpack (5.1.5) lib/action_dispatch/middleware/callbacks.rb:24:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/debug_exceptions.rb:59:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.5) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.5) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.5) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.5) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.5) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.5) lib/rails/rack/logger.rb:24:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.4) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.5) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.4) lib/rack/sendfile.rb:111:in `call'
+rack-cors (1.0.2) lib/rack/cors.rb:97:in `call'
+railties (5.1.5) lib/rails/engine.rb:522:in `call'
+puma (3.11.3) lib/puma/configuration.rb:225:in `call'
+puma (3.11.3) lib/puma/server.rb:624:in `handle_request'
+puma (3.11.3) lib/puma/server.rb:438:in `process_client'
+puma (3.11.3) lib/puma/server.rb:302:in `block in run'
+puma (3.11.3) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_try_advisory_lock(5355315013398446460)[0m
+  [1m[35m (1.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateMasters (20180318015758)
+  [1m[35m (0.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (22.6ms)[0m  [1m[35mCREATE TABLE "masters" ("id" bigserial primary key, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (1.5ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT pg_advisory_unlock(5355315013398446460)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_try_advisory_lock(5355315013398446460)[0m
+  [1m[35m (1.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateMasters (20180318015758)
+  [1m[35m (0.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (4.7ms)[0m  [1m[35mCREATE TABLE "masters" ("id" bigserial primary key, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT pg_advisory_unlock(5355315013398446460)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_try_advisory_lock(5355315013398446460)[0m
+  [1m[35m (2.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (65.4ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT pg_advisory_unlock(5355315013398446460)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/" for 127.0.0.1 at 2018-03-17 22:00:26 -0400
+  [1m[35m (1.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/katala/.rvm/gems/ruby-2.3.3/gems/railties-5.1.5/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/katala/.rvm/gems/ruby-2.3.3/gems/railties-5.1.5/lib/rails/templates/rails/welcome/index.html.erb (4.5ms)
+Completed 200 OK in 18ms (Views: 12.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/favicon.ico" for 127.0.0.1 at 2018-03-17 22:00:27 -0400
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+actionpack (5.1.5) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.5) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.5) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.5) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.5) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.5) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.5) lib/rails/rack/logger.rb:24:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.4) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.5) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.4) lib/rack/sendfile.rb:111:in `call'
+rack-cors (1.0.2) lib/rack/cors.rb:97:in `call'
+railties (5.1.5) lib/rails/engine.rb:522:in `call'
+puma (3.11.3) lib/puma/configuration.rb:225:in `call'
+puma (3.11.3) lib/puma/server.rb:624:in `handle_request'
+puma (3.11.3) lib/puma/server.rb:438:in `process_client'
+puma (3.11.3) lib/puma/server.rb:302:in `block in run'
+puma (3.11.3) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+Started GET "/masters" for 127.0.0.1 at 2018-03-17 22:00:36 -0400
+Processing by MastersController#index as HTML
+  [1m[36mMaster Load (1.0ms)[0m  [1m[34mSELECT "masters".* FROM "masters"[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (33.38ms)
+Completed 200 OK in 124ms (Views: 96.9ms | ActiveRecord: 20.8ms)
+
+
+Started GET "/masters" for 127.0.0.1 at 2018-03-17 22:01:55 -0400
+Processing by MastersController#index as */*
+  [1m[36mMaster Load (0.6ms)[0m  [1m[34mSELECT "masters".* FROM "masters"[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (0.17ms)
+Completed 200 OK in 4ms (Views: 2.5ms | ActiveRecord: 0.6ms)
+
+
+Started POST "/masters" for 127.0.0.1 at 2018-03-17 22:31:42 -0400
+Error occurred while parsing request parameters.
+Contents:
+
+[master:{
+	name: Tilopa
+}]
+  
+ActionDispatch::Http::Parameters::ParseError (419: unexpected token at 'master:{
+	name: Tilopa
+}]'):
+  
+actionpack (5.1.5) lib/action_dispatch/http/parameters.rb:115:in `rescue in parse_formatted_parameters'
+actionpack (5.1.5) lib/action_dispatch/http/parameters.rb:109:in `parse_formatted_parameters'
+actionpack (5.1.5) lib/action_dispatch/http/request.rb:361:in `block in POST'
+rack (2.0.4) lib/rack/request.rb:57:in `fetch'
+rack (2.0.4) lib/rack/request.rb:57:in `fetch_header'
+actionpack (5.1.5) lib/action_dispatch/http/request.rb:360:in `POST'
+actionpack (5.1.5) lib/action_controller/metal/params_wrapper.rb:286:in `_wrapper_enabled?'
+actionpack (5.1.5) lib/action_controller/metal/params_wrapper.rb:235:in `process_action'
+activerecord (5.1.5) lib/active_record/railties/controller_runtime.rb:22:in `process_action'
+actionpack (5.1.5) lib/abstract_controller/base.rb:124:in `process'
+actionpack (5.1.5) lib/action_controller/metal.rb:189:in `dispatch'
+actionpack (5.1.5) lib/action_controller/metal.rb:253:in `dispatch'
+actionpack (5.1.5) lib/action_dispatch/routing/route_set.rb:49:in `dispatch'
+actionpack (5.1.5) lib/action_dispatch/routing/route_set.rb:31:in `serve'
+actionpack (5.1.5) lib/action_dispatch/journey/router.rb:50:in `block in serve'
+actionpack (5.1.5) lib/action_dispatch/journey/router.rb:33:in `each'
+actionpack (5.1.5) lib/action_dispatch/journey/router.rb:33:in `serve'
+actionpack (5.1.5) lib/action_dispatch/routing/route_set.rb:844:in `call'
+rack (2.0.4) lib/rack/etag.rb:25:in `call'
+rack (2.0.4) lib/rack/conditional_get.rb:38:in `call'
+rack (2.0.4) lib/rack/head.rb:12:in `call'
+activerecord (5.1.5) lib/active_record/migration.rb:556:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/callbacks.rb:26:in `block in call'
+activesupport (5.1.5) lib/active_support/callbacks.rb:97:in `run_callbacks'
+actionpack (5.1.5) lib/action_dispatch/middleware/callbacks.rb:24:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/debug_exceptions.rb:59:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.5) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.5) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.5) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.5) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.5) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.5) lib/rails/rack/logger.rb:24:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.4) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.5) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.4) lib/rack/sendfile.rb:111:in `call'
+rack-cors (1.0.2) lib/rack/cors.rb:97:in `call'
+railties (5.1.5) lib/rails/engine.rb:522:in `call'
+puma (3.11.3) lib/puma/configuration.rb:225:in `call'
+puma (3.11.3) lib/puma/server.rb:624:in `handle_request'
+puma (3.11.3) lib/puma/server.rb:438:in `process_client'
+puma (3.11.3) lib/puma/server.rb:302:in `block in run'
+puma (3.11.3) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+Started POST "/masters" for 127.0.0.1 at 2018-03-17 22:31:59 -0400
+Error occurred while parsing request parameters.
+Contents:
+
+{
+	name: Tilopa
+}
+  
+ActionDispatch::Http::Parameters::ParseError (822: unexpected token at '{
+	name: Tilopa
+}'):
+  
+actionpack (5.1.5) lib/action_dispatch/http/parameters.rb:115:in `rescue in parse_formatted_parameters'
+actionpack (5.1.5) lib/action_dispatch/http/parameters.rb:109:in `parse_formatted_parameters'
+actionpack (5.1.5) lib/action_dispatch/http/request.rb:361:in `block in POST'
+rack (2.0.4) lib/rack/request.rb:57:in `fetch'
+rack (2.0.4) lib/rack/request.rb:57:in `fetch_header'
+actionpack (5.1.5) lib/action_dispatch/http/request.rb:360:in `POST'
+actionpack (5.1.5) lib/action_controller/metal/params_wrapper.rb:286:in `_wrapper_enabled?'
+actionpack (5.1.5) lib/action_controller/metal/params_wrapper.rb:235:in `process_action'
+activerecord (5.1.5) lib/active_record/railties/controller_runtime.rb:22:in `process_action'
+actionpack (5.1.5) lib/abstract_controller/base.rb:124:in `process'
+actionpack (5.1.5) lib/action_controller/metal.rb:189:in `dispatch'
+actionpack (5.1.5) lib/action_controller/metal.rb:253:in `dispatch'
+actionpack (5.1.5) lib/action_dispatch/routing/route_set.rb:49:in `dispatch'
+actionpack (5.1.5) lib/action_dispatch/routing/route_set.rb:31:in `serve'
+actionpack (5.1.5) lib/action_dispatch/journey/router.rb:50:in `block in serve'
+actionpack (5.1.5) lib/action_dispatch/journey/router.rb:33:in `each'
+actionpack (5.1.5) lib/action_dispatch/journey/router.rb:33:in `serve'
+actionpack (5.1.5) lib/action_dispatch/routing/route_set.rb:844:in `call'
+rack (2.0.4) lib/rack/etag.rb:25:in `call'
+rack (2.0.4) lib/rack/conditional_get.rb:38:in `call'
+rack (2.0.4) lib/rack/head.rb:12:in `call'
+activerecord (5.1.5) lib/active_record/migration.rb:556:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/callbacks.rb:26:in `block in call'
+activesupport (5.1.5) lib/active_support/callbacks.rb:97:in `run_callbacks'
+actionpack (5.1.5) lib/action_dispatch/middleware/callbacks.rb:24:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/debug_exceptions.rb:59:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.5) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.5) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.5) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.5) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.5) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.5) lib/rails/rack/logger.rb:24:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.4) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.5) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.4) lib/rack/sendfile.rb:111:in `call'
+rack-cors (1.0.2) lib/rack/cors.rb:97:in `call'
+railties (5.1.5) lib/rails/engine.rb:522:in `call'
+puma (3.11.3) lib/puma/configuration.rb:225:in `call'
+puma (3.11.3) lib/puma/server.rb:624:in `handle_request'
+puma (3.11.3) lib/puma/server.rb:438:in `process_client'
+puma (3.11.3) lib/puma/server.rb:302:in `block in run'
+puma (3.11.3) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.9ms)[0m  [1m[32mINSERT INTO "masters" ("name") VALUES ($1) RETURNING "id"[0m  [["name", "Tilopa"]]
+  [1m[35m (0.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.9ms)[0m  [1m[32mINSERT INTO "masters" ("name") VALUES ($1) RETURNING "id"[0m  [["name", "Naropa"]]
+  [1m[35m (1.6ms)[0m  [1m[35mCOMMIT[0m
+Started GET "/masters" for 127.0.0.1 at 2018-03-17 22:34:25 -0400
+  [1m[35m (1.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by MastersController#index as */*
+  Parameters: {"master"=>{}}
+  [1m[36mMaster Load (1.1ms)[0m  [1m[34mSELECT "masters".* FROM "masters"[0m
+No serializer found for resource: #<Master id: 1, order: nil, name: "Tilopa", years_lived: nil, description: nil, img_url: nil>
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Master::ActiveRecord_Relation (0.54ms)
+Completed 200 OK in 44ms (Views: 36.5ms | ActiveRecord: 11.1ms)
+
+
+Started GET "/masters/1" for 127.0.0.1 at 2018-03-17 22:34:37 -0400
+Processing by MastersController#show as */*
+  Parameters: {"id"=>"1", "master"=>{}}
+  [1m[36mMaster Load (1.2ms)[0m  [1m[34mSELECT  "masters".* FROM "masters" WHERE "masters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Class (0.14ms)
+Completed 200 OK in 130ms (Views: 68.5ms | ActiveRecord: 26.2ms)
+
+
+Started GET "/master/1" for 127.0.0.1 at 2018-03-17 22:34:59 -0400
+  
+ActionController::RoutingError (No route matches [GET] "/master/1"):
+  
+actionpack (5.1.5) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.5) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.5) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.5) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.5) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.5) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.5) lib/rails/rack/logger.rb:24:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.4) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.5) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.4) lib/rack/sendfile.rb:111:in `call'
+rack-cors (1.0.2) lib/rack/cors.rb:97:in `call'
+railties (5.1.5) lib/rails/engine.rb:522:in `call'
+puma (3.11.3) lib/puma/configuration.rb:225:in `call'
+puma (3.11.3) lib/puma/server.rb:624:in `handle_request'
+puma (3.11.3) lib/puma/server.rb:438:in `process_client'
+puma (3.11.3) lib/puma/server.rb:302:in `block in run'
+puma (3.11.3) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+Started GET "/master/1" for 127.0.0.1 at 2018-03-17 22:35:00 -0400
+  
+ActionController::RoutingError (No route matches [GET] "/master/1"):
+  
+actionpack (5.1.5) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.5) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.5) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.5) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.5) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.5) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.5) lib/rails/rack/logger.rb:24:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.4) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.5) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.4) lib/rack/sendfile.rb:111:in `call'
+rack-cors (1.0.2) lib/rack/cors.rb:97:in `call'
+railties (5.1.5) lib/rails/engine.rb:522:in `call'
+puma (3.11.3) lib/puma/configuration.rb:225:in `call'
+puma (3.11.3) lib/puma/server.rb:624:in `handle_request'
+puma (3.11.3) lib/puma/server.rb:438:in `process_client'
+puma (3.11.3) lib/puma/server.rb:302:in `block in run'
+puma (3.11.3) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+Started GET "/masters/1" for 127.0.0.1 at 2018-03-17 22:35:03 -0400
+Processing by MastersController#show as */*
+  Parameters: {"id"=>"1", "master"=>{}}
+  [1m[36mMaster Load (1.8ms)[0m  [1m[34mSELECT  "masters".* FROM "masters" WHERE "masters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Class (0.14ms)
+Completed 200 OK in 9ms (Views: 1.4ms | ActiveRecord: 4.5ms)
+
+
+Started GET "/masters/2" for 127.0.0.1 at 2018-03-17 22:35:08 -0400
+Processing by MastersController#show as */*
+  Parameters: {"id"=>"2", "master"=>{}}
+  [1m[36mMaster Load (1.1ms)[0m  [1m[34mSELECT  "masters".* FROM "masters" WHERE "masters"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Class (0.11ms)
+Completed 200 OK in 7ms (Views: 1.0ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/masters" for 127.0.0.1 at 2018-03-17 22:36:01 -0400
+Processing by MastersController#index as HTML
+  [1m[36mMaster Load (0.5ms)[0m  [1m[34mSELECT "masters".* FROM "masters"[0m
+No serializer found for resource: #<Master id: 1, order: nil, name: "Tilopa", years_lived: nil, description: nil, img_url: nil>
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Master::ActiveRecord_Relation (0.47ms)
+Completed 200 OK in 4ms (Views: 2.8ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/masters/1" for 127.0.0.1 at 2018-03-17 22:36:10 -0400
+Processing by MastersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mMaster Load (0.6ms)[0m  [1m[34mSELECT  "masters".* FROM "masters" WHERE "masters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Class (0.08ms)
+Completed 200 OK in 3ms (Views: 0.7ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/masters/2" for 127.0.0.1 at 2018-03-17 22:36:16 -0400
+Processing by MastersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mMaster Load (0.5ms)[0m  [1m[34mSELECT  "masters".* FROM "masters" WHERE "masters"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Class (0.09ms)
+Completed 200 OK in 3ms (Views: 0.7ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/masters/" for 127.0.0.1 at 2018-03-17 22:36:20 -0400
+Processing by MastersController#index as HTML
+  [1m[36mMaster Load (0.5ms)[0m  [1m[34mSELECT "masters".* FROM "masters"[0m
+No serializer found for resource: #<Master id: 1, order: nil, name: "Tilopa", years_lived: nil, description: nil, img_url: nil>
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Master::ActiveRecord_Relation (0.55ms)
+Completed 200 OK in 3ms (Views: 2.4ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/masters/" for 127.0.0.1 at 2018-03-17 22:37:01 -0400
+Processing by MastersController#index as HTML
+  [1m[36mMaster Load (0.6ms)[0m  [1m[34mSELECT "masters".* FROM "masters"[0m
+No serializer found for resource: #<Master id: 1, order: nil, name: "Tilopa", years_lived: nil, description: nil, img_url: nil>
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Master::ActiveRecord_Relation (0.39ms)
+Completed 200 OK in 43ms (Views: 28.4ms | ActiveRecord: 8.9ms)
+
+
+Started GET "/masters/1" for 127.0.0.1 at 2018-03-17 22:37:04 -0400
+Processing by MastersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mMaster Load (0.8ms)[0m  [1m[34mSELECT  "masters".* FROM "masters" WHERE "masters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Master (0.26ms)
+Completed 200 OK in 5ms (Views: 0.9ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/masters/2" for 127.0.0.1 at 2018-03-17 22:37:08 -0400
+Processing by MastersController#show as */*
+  Parameters: {"id"=>"2", "master"=>{}}
+  [1m[36mMaster Load (0.6ms)[0m  [1m[34mSELECT  "masters".* FROM "masters" WHERE "masters"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Master (0.35ms)
+Completed 200 OK in 4ms (Views: 1.1ms | ActiveRecord: 0.6ms)
+
+
+Started PATCH "/masters/2" for 127.0.0.1 at 2018-03-17 22:38:25 -0400
+Error occurred while parsing request parameters.
+Contents:
+
+{
+	order: '1'
+}
+  
+ActionDispatch::Http::Parameters::ParseError (822: unexpected token at '{
+	order: '1'
+}'):
+  
+actionpack (5.1.5) lib/action_dispatch/http/parameters.rb:115:in `rescue in parse_formatted_parameters'
+actionpack (5.1.5) lib/action_dispatch/http/parameters.rb:109:in `parse_formatted_parameters'
+actionpack (5.1.5) lib/action_dispatch/http/request.rb:361:in `block in POST'
+rack (2.0.4) lib/rack/request.rb:57:in `fetch'
+rack (2.0.4) lib/rack/request.rb:57:in `fetch_header'
+actionpack (5.1.5) lib/action_dispatch/http/request.rb:360:in `POST'
+actionpack (5.1.5) lib/action_controller/metal/params_wrapper.rb:286:in `_wrapper_enabled?'
+actionpack (5.1.5) lib/action_controller/metal/params_wrapper.rb:235:in `process_action'
+activerecord (5.1.5) lib/active_record/railties/controller_runtime.rb:22:in `process_action'
+actionpack (5.1.5) lib/abstract_controller/base.rb:124:in `process'
+actionpack (5.1.5) lib/action_controller/metal.rb:189:in `dispatch'
+actionpack (5.1.5) lib/action_controller/metal.rb:253:in `dispatch'
+actionpack (5.1.5) lib/action_dispatch/routing/route_set.rb:49:in `dispatch'
+actionpack (5.1.5) lib/action_dispatch/routing/route_set.rb:31:in `serve'
+actionpack (5.1.5) lib/action_dispatch/journey/router.rb:50:in `block in serve'
+actionpack (5.1.5) lib/action_dispatch/journey/router.rb:33:in `each'
+actionpack (5.1.5) lib/action_dispatch/journey/router.rb:33:in `serve'
+actionpack (5.1.5) lib/action_dispatch/routing/route_set.rb:844:in `call'
+rack (2.0.4) lib/rack/etag.rb:25:in `call'
+rack (2.0.4) lib/rack/conditional_get.rb:38:in `call'
+rack (2.0.4) lib/rack/head.rb:12:in `call'
+activerecord (5.1.5) lib/active_record/migration.rb:556:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/callbacks.rb:26:in `block in call'
+activesupport (5.1.5) lib/active_support/callbacks.rb:97:in `run_callbacks'
+actionpack (5.1.5) lib/action_dispatch/middleware/callbacks.rb:24:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/debug_exceptions.rb:59:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.5) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.5) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.5) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.5) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.5) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.5) lib/rails/rack/logger.rb:24:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.4) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.5) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.4) lib/rack/sendfile.rb:111:in `call'
+rack-cors (1.0.2) lib/rack/cors.rb:97:in `call'
+railties (5.1.5) lib/rails/engine.rb:522:in `call'
+puma (3.11.3) lib/puma/configuration.rb:225:in `call'
+puma (3.11.3) lib/puma/server.rb:624:in `handle_request'
+puma (3.11.3) lib/puma/server.rb:438:in `process_client'
+puma (3.11.3) lib/puma/server.rb:302:in `block in run'
+puma (3.11.3) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+Started PATCH "/masters/2" for 127.0.0.1 at 2018-03-17 22:38:51 -0400
+Processing by MastersController#update as */*
+  Parameters: {"order"=>1, "id"=>"2", "master"=>{"order"=>1}}
+  [1m[36mMaster Load (0.8ms)[0m  [1m[34mSELECT  "masters".* FROM "masters" WHERE "masters"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (45.7ms)[0m  [1m[33mUPDATE "masters" SET "order" = $1 WHERE "masters"."id" = $2[0m  [["order", 1], ["id", 2]]
+  [1m[35m (1.4ms)[0m  [1m[35mCOMMIT[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Master (0.32ms)
+Completed 200 OK in 58ms (Views: 1.3ms | ActiveRecord: 48.5ms)
+
+
+Started PATCH "/masters/2" for 127.0.0.1 at 2018-03-17 22:39:18 -0400
+Processing by MastersController#update as */*
+  Parameters: {"order"=>3, "id"=>"2", "master"=>{"order"=>3}}
+  [1m[36mMaster Load (0.5ms)[0m  [1m[34mSELECT  "masters".* FROM "masters" WHERE "masters"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.1ms)[0m  [1m[33mUPDATE "masters" SET "order" = $1 WHERE "masters"."id" = $2[0m  [["order", 3], ["id", 2]]
+  [1m[35m (1.9ms)[0m  [1m[35mCOMMIT[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Master (0.56ms)
+Completed 200 OK in 9ms (Views: 1.3ms | ActiveRecord: 3.8ms)
+
+
+Started PATCH "/masters/2" for 127.0.0.1 at 2018-03-17 22:39:45 -0400
+Processing by MastersController#update as */*
+  Parameters: {"years_lived"=>"1016-1100", "id"=>"2", "master"=>{"years_lived"=>"1016-1100"}}
+  [1m[36mMaster Load (0.6ms)[0m  [1m[34mSELECT  "masters".* FROM "masters" WHERE "masters"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.8ms)[0m  [1m[33mUPDATE "masters" SET "years_lived" = $1 WHERE "masters"."id" = $2[0m  [["years_lived", "1016-1100"], ["id", 2]]
+  [1m[35m (1.3ms)[0m  [1m[35mCOMMIT[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Master (0.23ms)
+Completed 200 OK in 8ms (Views: 1.2ms | ActiveRecord: 3.3ms)
+
+
+Started PATCH "/masters/2" for 127.0.0.1 at 2018-03-17 22:41:12 -0400
+Error occurred while parsing request parameters.
+Contents:
+
+{
+	"description": "Born as a Bengali prince named Samantabhadra, Naropa (1016-1100) rebelled at a young age against his royal training. Eight years old, he demanded to go to Kashmir, to follow an intellectual education with the best teachers of the age. Three years later, he finally embarked upon the study of logic, science, grammar, rhetoric and art.
+Meanwhile, his parents, according to the custom of the time, had arranged for his marriage to Vimaladipi, Brahmin girl. The ceremony took place upon his return, but eight years later Naropa insisted on its dissolution, and promptly returned to Kashmir to be ordained as a monk, and to undertake further study.
+Several years later, at twenty-eight, his interests drew him to Nalanda University, near Pullahari, famous for its Buddhist philosophers. Naropa was such an intellectual that he became one of the leading scholars of the University in due course. But then a dakini appeared to him, telling him that meditation practice was more important than philosophizing, and that he should search out a certain Tilopa for instructions.
+
+Leaving the monastery, Naropa set out to the East to find this teacher (who is often seen together with Naropa in thangkas). He did eventually meet Tilopa, without recognizing him at first, and was put to twelve hard tests. He persevered, however, mastered Tilopa’s teachings, and finally transmitted the teachings to the next generation of disciples. Among them was the Tibetan translator Marpa, who brought the transmission to Tibet. He also saw to it that Marpa received transmission from other contemporary teachers, to ensure that Marpa unified various transmissions that were current in India at the time.
+
+ "
+}
+  
+ActionDispatch::Http::Parameters::ParseError (822: unexpected token at '{
+	"description": "Born as a Bengali prince named Samantabhadra, Naropa (1016-1100) rebelled at a young age against his royal training. Eight years old, he demanded to go to Kashmir, to follow an intellectual education with the best teachers of the age. Three years later, he finally embarked upon the study of logic, science, grammar, rhetoric and art.
+Meanwhile, his parents, according to the custom of the time, had arranged for his marriage to Vimaladipi, Brahmin girl. The ceremony took place upon his return, but eight years later Naropa insisted on its dissolution, and promptly returned to Kashmir to be ordained as a monk, and to undertake further study.
+Several years later, at twenty-eight, his interests drew him to Nalanda University, near Pullahari, famous for its Buddhist philosophers. Naropa was such an intellectual that he became one of the leading scholars of the University in due course. But then a dakini appeared to him, telling him that meditation practice was more important than philosophizing, and that he should search out a certain Tilopa for instructions.
+
+Leaving the monastery, Naropa set out to the East to find this teacher (who is often seen together with Naropa in thangkas). He did eventually meet Tilopa, without recognizing him at first, and was put to twelve hard tests. He persevered, however, mastered Tilopa’s teachings, and finally transmitted the teachings to the next generation of disciples. Among them was the Tibetan translator Marpa, who brought the transmission to Tibet. He also saw to it that Marpa received transmission from other contemporary teachers, to ensure that Marpa unified various transmissions that were current in India at the time.
+
+ "
+}'):
+  
+actionpack (5.1.5) lib/action_dispatch/http/parameters.rb:115:in `rescue in parse_formatted_parameters'
+actionpack (5.1.5) lib/action_dispatch/http/parameters.rb:109:in `parse_formatted_parameters'
+actionpack (5.1.5) lib/action_dispatch/http/request.rb:361:in `block in POST'
+rack (2.0.4) lib/rack/request.rb:57:in `fetch'
+rack (2.0.4) lib/rack/request.rb:57:in `fetch_header'
+actionpack (5.1.5) lib/action_dispatch/http/request.rb:360:in `POST'
+actionpack (5.1.5) lib/action_controller/metal/params_wrapper.rb:286:in `_wrapper_enabled?'
+actionpack (5.1.5) lib/action_controller/metal/params_wrapper.rb:235:in `process_action'
+activerecord (5.1.5) lib/active_record/railties/controller_runtime.rb:22:in `process_action'
+actionpack (5.1.5) lib/abstract_controller/base.rb:124:in `process'
+actionpack (5.1.5) lib/action_controller/metal.rb:189:in `dispatch'
+actionpack (5.1.5) lib/action_controller/metal.rb:253:in `dispatch'
+actionpack (5.1.5) lib/action_dispatch/routing/route_set.rb:49:in `dispatch'
+actionpack (5.1.5) lib/action_dispatch/routing/route_set.rb:31:in `serve'
+actionpack (5.1.5) lib/action_dispatch/journey/router.rb:50:in `block in serve'
+actionpack (5.1.5) lib/action_dispatch/journey/router.rb:33:in `each'
+actionpack (5.1.5) lib/action_dispatch/journey/router.rb:33:in `serve'
+actionpack (5.1.5) lib/action_dispatch/routing/route_set.rb:844:in `call'
+rack (2.0.4) lib/rack/etag.rb:25:in `call'
+rack (2.0.4) lib/rack/conditional_get.rb:38:in `call'
+rack (2.0.4) lib/rack/head.rb:12:in `call'
+activerecord (5.1.5) lib/active_record/migration.rb:556:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/callbacks.rb:26:in `block in call'
+activesupport (5.1.5) lib/active_support/callbacks.rb:97:in `run_callbacks'
+actionpack (5.1.5) lib/action_dispatch/middleware/callbacks.rb:24:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/debug_exceptions.rb:59:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.5) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.5) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.5) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.5) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.5) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.5) lib/rails/rack/logger.rb:24:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.4) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.5) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.4) lib/rack/sendfile.rb:111:in `call'
+rack-cors (1.0.2) lib/rack/cors.rb:97:in `call'
+railties (5.1.5) lib/rails/engine.rb:522:in `call'
+puma (3.11.3) lib/puma/configuration.rb:225:in `call'
+puma (3.11.3) lib/puma/server.rb:624:in `handle_request'
+puma (3.11.3) lib/puma/server.rb:438:in `process_client'
+puma (3.11.3) lib/puma/server.rb:302:in `block in run'
+puma (3.11.3) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+Started PATCH "/masters/2" for 127.0.0.1 at 2018-03-17 22:42:24 -0400
+Error occurred while parsing request parameters.
+Contents:
+
+{
+	"description": "Born as a Bengali prince named Samantabhadra, Naropa (1016-1100) rebelled at a young age against his royal training. Eight years old, he demanded to go to Kashmir, to follow an intellectual education with the best teachers of the age. Three years later, he finally embarked upon the study of logic, science, grammar, rhetoric and art.
+Meanwhile, his parents, according to the custom of the time, had arranged for his marriage to Vimaladipi, Brahmin girl. The ceremony took place upon his return, but eight years later Naropa insisted on its dissolution, and promptly returned to Kashmir to be ordained as a monk, and to undertake further study.
+Several years later, at twenty-eight, his interests drew him to Nalanda University, near Pullahari, famous for its Buddhist philosophers. Naropa was such an intellectual that he became one of the leading scholars of the University in due course. But then a dakini appeared to him, telling him that meditation practice was more important than philosophizing, and that he should search out a certain Tilopa for instructions.
+Leaving the monastery, Naropa set out to the East to find this teacher (who is often seen together with Naropa in thangkas). He did eventually meet Tilopa, without recognizing him at first, and was put to twelve hard tests. He persevered, however, mastered Tilopa’s teachings, and finally transmitted the teachings to the next generation of disciples. Among them was the Tibetan translator Marpa, who brought the transmission to Tibet. He also saw to it that Marpa received transmission from other contemporary teachers, to ensure that Marpa unified various transmissions that were current in India at the time."
+}
+  
+ActionDispatch::Http::Parameters::ParseError (822: unexpected token at '{
+	"description": "Born as a Bengali prince named Samantabhadra, Naropa (1016-1100) rebelled at a young age against his royal training. Eight years old, he demanded to go to Kashmir, to follow an intellectual education with the best teachers of the age. Three years later, he finally embarked upon the study of logic, science, grammar, rhetoric and art.
+Meanwhile, his parents, according to the custom of the time, had arranged for his marriage to Vimaladipi, Brahmin girl. The ceremony took place upon his return, but eight years later Naropa insisted on its dissolution, and promptly returned to Kashmir to be ordained as a monk, and to undertake further study.
+Several years later, at twenty-eight, his interests drew him to Nalanda University, near Pullahari, famous for its Buddhist philosophers. Naropa was such an intellectual that he became one of the leading scholars of the University in due course. But then a dakini appeared to him, telling him that meditation practice was more important than philosophizing, and that he should search out a certain Tilopa for instructions.
+Leaving the monastery, Naropa set out to the East to find this teacher (who is often seen together with Naropa in thangkas). He did eventually meet Tilopa, without recognizing him at first, and was put to twelve hard tests. He persevered, however, mastered Tilopa’s teachings, and finally transmitted the teachings to the next generation of disciples. Among them was the Tibetan translator Marpa, who brought the transmission to Tibet. He also saw to it that Marpa received transmission from other contemporary teachers, to ensure that Marpa unified various transmissions that were current in India at the time."
+}'):
+  
+actionpack (5.1.5) lib/action_dispatch/http/parameters.rb:115:in `rescue in parse_formatted_parameters'
+actionpack (5.1.5) lib/action_dispatch/http/parameters.rb:109:in `parse_formatted_parameters'
+actionpack (5.1.5) lib/action_dispatch/http/request.rb:361:in `block in POST'
+rack (2.0.4) lib/rack/request.rb:57:in `fetch'
+rack (2.0.4) lib/rack/request.rb:57:in `fetch_header'
+actionpack (5.1.5) lib/action_dispatch/http/request.rb:360:in `POST'
+actionpack (5.1.5) lib/action_controller/metal/params_wrapper.rb:286:in `_wrapper_enabled?'
+actionpack (5.1.5) lib/action_controller/metal/params_wrapper.rb:235:in `process_action'
+activerecord (5.1.5) lib/active_record/railties/controller_runtime.rb:22:in `process_action'
+actionpack (5.1.5) lib/abstract_controller/base.rb:124:in `process'
+actionpack (5.1.5) lib/action_controller/metal.rb:189:in `dispatch'
+actionpack (5.1.5) lib/action_controller/metal.rb:253:in `dispatch'
+actionpack (5.1.5) lib/action_dispatch/routing/route_set.rb:49:in `dispatch'
+actionpack (5.1.5) lib/action_dispatch/routing/route_set.rb:31:in `serve'
+actionpack (5.1.5) lib/action_dispatch/journey/router.rb:50:in `block in serve'
+actionpack (5.1.5) lib/action_dispatch/journey/router.rb:33:in `each'
+actionpack (5.1.5) lib/action_dispatch/journey/router.rb:33:in `serve'
+actionpack (5.1.5) lib/action_dispatch/routing/route_set.rb:844:in `call'
+rack (2.0.4) lib/rack/etag.rb:25:in `call'
+rack (2.0.4) lib/rack/conditional_get.rb:38:in `call'
+rack (2.0.4) lib/rack/head.rb:12:in `call'
+activerecord (5.1.5) lib/active_record/migration.rb:556:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/callbacks.rb:26:in `block in call'
+activesupport (5.1.5) lib/active_support/callbacks.rb:97:in `run_callbacks'
+actionpack (5.1.5) lib/action_dispatch/middleware/callbacks.rb:24:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/debug_exceptions.rb:59:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.5) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.5) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.5) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.5) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.5) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.5) lib/rails/rack/logger.rb:24:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.4) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.5) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.4) lib/rack/sendfile.rb:111:in `call'
+rack-cors (1.0.2) lib/rack/cors.rb:97:in `call'
+railties (5.1.5) lib/rails/engine.rb:522:in `call'
+puma (3.11.3) lib/puma/configuration.rb:225:in `call'
+puma (3.11.3) lib/puma/server.rb:624:in `handle_request'
+puma (3.11.3) lib/puma/server.rb:438:in `process_client'
+puma (3.11.3) lib/puma/server.rb:302:in `block in run'
+puma (3.11.3) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+Started PATCH "/masters/2" for 127.0.0.1 at 2018-03-17 22:42:32 -0400
+Processing by MastersController#update as */*
+  Parameters: {"description"=>"Born as a Bengali prince named Samantabhadra, Naropa (1016-1100) rebelled at a young age against his royal training. Eight years old, he demanded to go to Kashmir, to follow an intellectual education with the best teachers of the age. Three years later, he finally embarked upon the study of logic, science, grammar, rhetoric and art.", "id"=>"2", "master"=>{"description"=>"Born as a Bengali prince named Samantabhadra, Naropa (1016-1100) rebelled at a young age against his royal training. Eight years old, he demanded to go to Kashmir, to follow an intellectual education with the best teachers of the age. Three years later, he finally embarked upon the study of logic, science, grammar, rhetoric and art."}}
+  [1m[36mMaster Load (1.0ms)[0m  [1m[34mSELECT  "masters".* FROM "masters" WHERE "masters"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[33mUPDATE "masters" SET "description" = $1 WHERE "masters"."id" = $2[0m  [["description", "Born as a Bengali prince named Samantabhadra, Naropa (1016-1100) rebelled at a young age against his royal training. Eight years old, he demanded to go to Kashmir, to follow an intellectual education with the best teachers of the age. Three years later, he finally embarked upon the study of logic, science, grammar, rhetoric and art."], ["id", 2]]
+  [1m[35m (1.2ms)[0m  [1m[35mCOMMIT[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Master (0.43ms)
+Completed 200 OK in 11ms (Views: 1.3ms | ActiveRecord: 3.6ms)
+
+
+Started GET "/masters/" for 127.0.0.1 at 2018-03-17 22:42:50 -0400
+Processing by MastersController#index as */*
+  Parameters: {"master"=>{}}
+  [1m[36mMaster Load (0.8ms)[0m  [1m[34mSELECT "masters".* FROM "masters"[0m
+No serializer found for resource: #<Master id: 1, order: nil, name: "Tilopa", years_lived: nil, description: nil, img_url: nil>
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Master::ActiveRecord_Relation (0.63ms)
+Completed 200 OK in 5ms (Views: 3.8ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/masters/1" for 127.0.0.1 at 2018-03-17 22:43:58 -0400
+Processing by MastersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mMaster Load (0.5ms)[0m  [1m[34mSELECT  "masters".* FROM "masters" WHERE "masters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Master (0.2ms)
+Completed 200 OK in 3ms (Views: 0.7ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/masters/" for 127.0.0.1 at 2018-03-17 22:44:02 -0400
+Processing by MastersController#index as HTML
+  [1m[36mMaster Load (0.5ms)[0m  [1m[34mSELECT "masters".* FROM "masters"[0m
+No serializer found for resource: #<Master id: 1, order: nil, name: "Tilopa", years_lived: nil, description: nil, img_url: nil>
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Master::ActiveRecord_Relation (0.31ms)
+Completed 200 OK in 3ms (Views: 2.3ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/masters/1" for 127.0.0.1 at 2018-03-17 22:45:51 -0400
+Processing by MastersController#show as */*
+  Parameters: {"id"=>"1", "master"=>{}}
+  [1m[36mMaster Load (0.3ms)[0m  [1m[34mSELECT  "masters".* FROM "masters" WHERE "masters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Master (0.25ms)
+Completed 200 OK in 2ms (Views: 0.7ms | ActiveRecord: 0.3ms)
+
+
+Started PATCH "/masters/1" for 127.0.0.1 at 2018-03-17 22:47:22 -0400
+Processing by MastersController#update as */*
+  Parameters: {"description"=>"A key figure for the Karma Kagyu lineage is the Indian master Tilopa (988-1069), one of the 84 Mahasiddhas or highly realised yogis. Tilopa is often depicted at the top of the traditional paintings (Tib. thangkas) of the Kagyu refuge trees.", "id"=>"1", "master"=>{"description"=>"A key figure for the Karma Kagyu lineage is the Indian master Tilopa (988-1069), one of the 84 Mahasiddhas or highly realised yogis. Tilopa is often depicted at the top of the traditional paintings (Tib. thangkas) of the Kagyu refuge trees."}}
+  [1m[36mMaster Load (0.4ms)[0m  [1m[34mSELECT  "masters".* FROM "masters" WHERE "masters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.8ms)[0m  [1m[33mUPDATE "masters" SET "description" = $1 WHERE "masters"."id" = $2[0m  [["description", "A key figure for the Karma Kagyu lineage is the Indian master Tilopa (988-1069), one of the 84 Mahasiddhas or highly realised yogis. Tilopa is often depicted at the top of the traditional paintings (Tib. thangkas) of the Kagyu refuge trees."], ["id", 1]]
+  [1m[35m (1.2ms)[0m  [1m[35mCOMMIT[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Master (0.25ms)
+Completed 200 OK in 7ms (Views: 0.9ms | ActiveRecord: 2.6ms)
+
+
+Started PATCH "/masters/1" for 127.0.0.1 at 2018-03-17 22:47:42 -0400
+Processing by MastersController#update as */*
+  Parameters: {"years_lived"=>"988-1069", "id"=>"1", "master"=>{"years_lived"=>"988-1069"}}
+  [1m[36mMaster Load (0.4ms)[0m  [1m[34mSELECT  "masters".* FROM "masters" WHERE "masters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.1ms)[0m  [1m[33mUPDATE "masters" SET "years_lived" = $1 WHERE "masters"."id" = $2[0m  [["years_lived", "988-1069"], ["id", 1]]
+  [1m[35m (1.1ms)[0m  [1m[35mCOMMIT[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Master (0.31ms)
+Completed 200 OK in 9ms (Views: 1.3ms | ActiveRecord: 3.0ms)
+
+
+Started PATCH "/masters/1" for 127.0.0.1 at 2018-03-17 22:48:15 -0400
+Processing by MastersController#update as */*
+  Parameters: {"order"=>2, "id"=>"1", "master"=>{"order"=>2}}
+  [1m[36mMaster Load (0.4ms)[0m  [1m[34mSELECT  "masters".* FROM "masters" WHERE "masters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.8ms)[0m  [1m[33mUPDATE "masters" SET "order" = $1 WHERE "masters"."id" = $2[0m  [["order", 2], ["id", 1]]
+  [1m[35m (1.2ms)[0m  [1m[35mCOMMIT[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Master (0.24ms)
+Completed 200 OK in 7ms (Views: 0.9ms | ActiveRecord: 2.7ms)
+
+
+Started PATCH "/masters/" for 127.0.0.1 at 2018-03-17 22:48:19 -0400
+  
+ActionController::RoutingError (No route matches [PATCH] "/masters"):
+  
+actionpack (5.1.5) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.5) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.5) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.5) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.5) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.5) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.5) lib/rails/rack/logger.rb:24:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.4) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.5) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.4) lib/rack/sendfile.rb:111:in `call'
+rack-cors (1.0.2) lib/rack/cors.rb:97:in `call'
+railties (5.1.5) lib/rails/engine.rb:522:in `call'
+puma (3.11.3) lib/puma/configuration.rb:225:in `call'
+puma (3.11.3) lib/puma/server.rb:624:in `handle_request'
+puma (3.11.3) lib/puma/server.rb:438:in `process_client'
+puma (3.11.3) lib/puma/server.rb:302:in `block in run'
+puma (3.11.3) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+Started GET "/masters/" for 127.0.0.1 at 2018-03-17 22:48:26 -0400
+Processing by MastersController#index as */*
+  Parameters: {"master"=>{}}
+  [1m[36mMaster Load (0.9ms)[0m  [1m[34mSELECT "masters".* FROM "masters"[0m
+No serializer found for resource: #<Master id: 2, order: 3, name: "Naropa", years_lived: "1016-1100", description: "Born as a Bengali prince named Samantabhadra, Naro...", img_url: nil>
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Master::ActiveRecord_Relation (0.94ms)
+Completed 200 OK in 6ms (Views: 4.4ms | ActiveRecord: 0.9ms)
+
+
