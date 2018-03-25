@@ -35,7 +35,7 @@ class MastersController < ApplicationController
   private
 
   def master_params
-    params.require(:master).permit(:order, :name, :years_lived, :description, :img_url)
+    params.require(:master).permit(:order_id, :name, :years_lived, :description, :img_url)
   end
 
 
